@@ -1,0 +1,7 @@
+{
+  "name": "Tennis FEB",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
