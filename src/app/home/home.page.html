@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list style="margin-top: 20px; margin-bottom: 50px;" >
+    <ion-row class="ion-justify-content-center ion-margin-bottom ion-margin-top">
+      <ion-datetime presentation="date" (ionChange)="onSelectDate($event)"></ion-datetime>
+    </ion-row>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+            Member Registered for date {{ selected_date | date: 'longDate' }}.
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+      <div style="margin-top: 10px; margin-bottom: 10px;">
+        <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+          Jumlah Terdaftar {{ registration_list.length }} dari 10
+        </ion-text>
+      </div>
+      
+      <ion-grid>
+        <ion-row>
+          <ion-col>No.</ion-col>
+          <ion-col>Nama</ion-col>
+          <ion-col>Menggunakan Pelatih</ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngFor="let x of registration_list; let i = index">
+        <ion-row>
+          <ion-col>{{ i + 1 }}</ion-col>
+          <ion-col>{{ x.name }}</ion-col>
+          <ion-col>{{ x.pelatih ? "Ya" : "Tidak" }}</ion-col>
+        </ion-row>
+      </ion-grid>
+      
+    </ion-item-group>
+  </ion-list>
+</ion-content>

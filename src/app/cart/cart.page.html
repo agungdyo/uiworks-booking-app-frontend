@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list style="margin-right: 20px">
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+        Pilihan Anda
+      </ion-text>
+    </div>
+
+    <ion-item>
+      <ion-label class="ion-margin-top">Tanggal</ion-label>
+      <ion-text>{{ registration.schedule | date: 'longDate'}}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Nama</ion-label>
+      <ion-text>{{ registration.name }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-text>{{ registration.email }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Phone</ion-label>
+      <ion-text>{{ registration.phone }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Menggunakan Pelatih</ion-label>
+      <ion-text>{{ registration.pelatih ? "Ya" : "Tidak"}}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Biaya Pendaftaran</ion-label>
+      <ion-text>{{ registration.registration_fee | currency:'Rp':'symbol' }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Biaya Pelatih</ion-label>
+      <ion-text>{{ registration.trainer_fee | currency:'Rp':'symbol' }}</ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Biaya Admin</ion-label>
+      <ion-text>{{ registration.admin_fee | currency:'Rp':'symbol' }} </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Total Mesti Dibayarkan</ion-label>
+      <ion-text>{{ registration.total_fee | currency:'Rp':'symbol' }}</ion-text>
+    </ion-item>
+
+  </ion-list>
+  <ion-list>
+    <div style="margin-top: 10px; margin-bottom: 10px;">
+      <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+        Pilih Metode Pembayaran
+      </ion-text>
+    </div>
+
+    <ion-radio-group [(ngModel)]="payment_method">
+      <ion-item>
+        <ion-radio slot="end" value="bni" ></ion-radio>
+        <ion-img src="../../assets/img/bni.png" alt="BNI" style="height: 36px; "></ion-img>
+        <ion-label>BNI</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="bca"></ion-radio>
+        <ion-img src="../../assets/img/bca.png" alt="BCA" style="height: 36px; "></ion-img>
+        <ion-label>BCA</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="mandiri"></ion-radio>
+        <ion-img src="../../assets/img/mandiri.png" alt="Bank Mandiri" style="height: 36px; "></ion-img>
+        <ion-label>Mandiri</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="bsi"></ion-radio>
+        <ion-img src="../../assets/img/bsi.png" alt="BSI" style="height: 36px; "></ion-img>
+        <ion-label>BSI</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="bri"></ion-radio>
+        <ion-img src="../../assets/img/bri.png" alt="BRI" style="height: 36px; "></ion-img>
+        <ion-label>BRI</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="maybank"></ion-radio>
+        <ion-img src="../../assets/img/maybank.png" alt="Maybank" style="height: 36px; "></ion-img>
+        <ion-label>Maybank</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="permata"></ion-radio>
+        <ion-img src="../../assets/img/permata.png" alt="Permata" style="height: 36px; "></ion-img>
+        <ion-label>Permata</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="cimb"></ion-radio>
+        <ion-img src="../../assets/img/cimb.png" alt="CIMB" style="height: 36px; "></ion-img>
+        <ion-label>CIMB Niaga</ion-label>
+      </ion-item>
+  
+      <ion-item>
+        <ion-radio slot="end" value="danamon"></ion-radio>
+        <ion-img src="../../assets/img/danamon.png" alt="Danamon" style="height: 36px; "></ion-img>
+        <ion-label>Danamon</ion-label>
+      </ion-item>
+    </ion-radio-group>
+    
+  </ion-list>
+
+  <ion-grid style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
+    <ion-row>
+      <ion-col size="6">
+        <ion-button *ngIf="this.registration.email" expand="block" (click)="onGetToken()">Pay</ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button expand="block" color="danger" (click)="onClearCart()">Cancel</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

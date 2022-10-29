@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registration</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-text style="width: 150px;">
+        Pilih Tanggal
+      </ion-text>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
+    </ion-item>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime" presentation="date" [preferWheel]="true" (ionChange)="onSelectDate($event)"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+
+    <ion-item>
+      <ion-label position="floating">Nama</ion-label>
+      <ion-input required="true" [(ngModel)]="registration.name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="email" inputmode="email" required="true" [(ngModel)]="registration.email" (ionBlur)="onEnterEmail()"></ion-input>
+      <ion-note slot="error">Enter a valid email</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Phone</ion-label>
+      <ion-input [(ngModel)]="registration.phone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Menggunakan Pelatih</ion-label>
+      <ion-toggle slot="end" [(ngModel)]="registration.pelatih" (ionChange)="onSelectInstructor($event)" ></ion-toggle>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Biaya Pendaftaran</ion-label>
+      <ion-input min="100000" required="true" [(ngModel)]="registration.registration_fee" type="number" (ionChange)="onSelectRegistrationFee()"></ion-input>
+      <ion-note slot="helper">Please input amount at least Rp 100.000,00</ion-note>
+      <ion-note slot="error">Input amount more than Rp 100.000,00</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label class="ion-margin-top" position="stacked">Total Mesti Dibayarkan</ion-label>
+      <ion-text>{{ registration.total_fee | currency:'Rp':'symbol' }}</ion-text>
+    </ion-item>
+
+    <ion-grid style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="onAddtoCart()">Add to Cart</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger" (click)="onClear()">Clear</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-list>
+  <!-- <ion-list style="margin-bottom: 50px;">
+    <ion-item>
+      <ion-text>
+        {{ invoice_data | json}}
+      </ion-text>
+    </ion-item>
+  </ion-list> -->
+</ion-content>
