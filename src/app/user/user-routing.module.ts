@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminPage } from './admin.page';
+import { UserPage } from './user.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: AdminPage,
+    component: UserPage,
     children: [
       {
         path: 'home',
@@ -20,15 +20,11 @@ const routes: Routes = [
         path: 'cart',
         loadChildren: () => import('../cart/cart.module').then( m => m.CartPageModule)
       },
-      {
-        path: 'settings',
-        loadChildren: () => import('../setup-page/setup-page.module').then( m => m.SetupPagePageModule)
-      },
     ]
   },
   {
     path: '',
-    redirectTo: '/admin/home',
+    redirectTo: '/user/home',
     pathMatch: 'full'
   }
 ];
@@ -37,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminPageRoutingModule {}
+export class UserPageRoutingModule {}

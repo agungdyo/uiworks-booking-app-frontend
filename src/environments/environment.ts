@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: 'http://127.0.0.1/api/v1',
+  api: 'http://127.0.0.1:3000/api/v1',
   maja_api: 'https://billing.maja.id/api/v2',
   token_URL: 'https://account.makaramas.com/auth/realms/maja/protocol/openid-connect/token',
   client_id: 'MAJA80114',

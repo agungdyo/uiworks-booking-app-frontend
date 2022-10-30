@@ -14,7 +14,7 @@
 
     <ion-item>
       <ion-label class="ion-margin-top">Tanggal</ion-label>
-      <ion-text>{{ registration.schedule | date: 'longDate'}}</ion-text>
+      <ion-text>{{ registration.date_string | date: 'longDate'}}</ion-text>
     </ion-item>
 
     <ion-item>
@@ -133,4 +133,12 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-list>
+    <ion-item>
+      <ion-text>
+        {{ invoice_data | json }}
+      </ion-text>
+    </ion-item>
+  </ion-list>
 </ion-content>

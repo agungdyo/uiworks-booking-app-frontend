@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>
+          <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+            Setup Kapasitas Peserta
+          </ion-text>
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-grid style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
+        <ion-row>
+          <ion-col size="6">
+            <ion-button expand="block" (click)="onToggle(false)">Setup per Hari</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button expand="block" (click)="onToggle(true)">Setup Multiple Hari</ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+      <div *ngIf="multiple === false" style="margin-top: 10px; margin-bottom: 10px;">
+        <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+          Setup per Hari
+        </ion-text>
+      </div>
+
+      <ion-item *ngIf="multiple === false" >
+        <ion-text style="width: 150px;">
+          Pilih Tanggal
+        </ion-text>
+        <ion-datetime-button datetime="datesingle"></ion-datetime-button>
+      </ion-item>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datesingle" presentation="date" [preferWheel]="true" [(ngModel)]="payload.date" (ionChange)="onSelectDate()"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+
+      <div *ngIf="multiple === true" style="margin-top: 10px; margin-bottom: 10px;">
+        <ion-text style="font-weight: bold; font-size: small; margin-left: 10px;">
+          Setup Multiple Hari
+        </ion-text>
+      </div>
+
+      <ion-item *ngIf="multiple === true">
+        <ion-text style="width: 150px;">
+          Pilih Tanggal
+        </ion-text>
+        <ion-datetime-button datetime="datestart"></ion-datetime-button>
+        <ion-text> - </ion-text>
+        <ion-datetime-button datetime="dateend"></ion-datetime-button>
+      </ion-item>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datestart" presentation="date" [preferWheel]="true" [(ngModel)]="payload.start_date"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="dateend" presentation="date" [preferWheel]="true" [(ngModel)]="payload.end_date"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+
+      <ion-item>
+        <ion-label position="floating">Kapasitas</ion-label>
+        <ion-input type="number" [(ngModel)]="payload.capacity"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Trainer Fee</ion-label>
+        <ion-input type="number" [(ngModel)]="payload.trainer_fee"></ion-input>
+      </ion-item>
+  
+    </ion-item-group>
+    <ion-grid style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
+      <ion-row>
+        <ion-col size="6">
+          <ion-button expand="block" (click)="onCreateSchedule()">Submit</ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button expand="block" color="danger">Clear</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-list>
+    <ion-item>
+      {{ payload | json}}
+    </ion-item>
+  </ion-list>
+  
+</ion-content>
