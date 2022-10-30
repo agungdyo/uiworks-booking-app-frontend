@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
+  appId: 'id.uipay.tennis',
   appName: 'Tennis FEB',
   webDir: 'www',
   bundledWebRuntime: false
