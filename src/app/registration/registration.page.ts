@@ -113,7 +113,7 @@ export class RegistrationPage implements OnInit {
   }
 
   onAddtoCart(){
-    if (this.registration.registration_fee >= 100000) {
+    if (this.registration.registration_fee >= 10000) {
       this.registration.admin_fee = this.admin_fee;
       if (this.registration.trainer_fee > 0) {
         this.invoice_data = {
@@ -186,7 +186,7 @@ export class RegistrationPage implements OnInit {
       })
       
     } else {
-      alert('Harap masukkan nilai pendaftaran paling rendah Rp100.000,00')
+      alert('Harap masukkan nilai pendaftaran paling rendah Rp10.000,00')
     }
     
   }
