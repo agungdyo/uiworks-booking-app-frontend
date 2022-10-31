@@ -49,31 +49,31 @@ export class HomePage implements OnInit {
             }
           },
           complete: (() => {
-            this.registrationService.getReservation({
-              date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
-              status: true
-            },'').subscribe({
-              next: (res) => {
-                let result = res.data;
-                if (result) {
-                  this.capacity = this.capacity - result.length;
-                }
-              },
-              complete: (() => {
-                this.registrationService.getCart({
-                  date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
-                  status: true
-                }, '').subscribe({
-                  next: (res) => {
-                    let result = res.data;
-                    if (result) {
-                      this.capacity = this.capacity - result.length;
-                    }
-                  },
-                  complete: (() => {})
-                })
-              })
-            })
+            // this.registrationService.getReservation({
+            //   date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+            //   status: true
+            // },'').subscribe({
+            //   next: (res) => {
+            //     let result = res.data;
+            //     if (result) {
+            //       this.capacity = this.capacity - result.length;
+            //     }
+            //   },
+            //   complete: (() => {
+            //     this.registrationService.getCart({
+            //       date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+            //       status: true
+            //     }, '').subscribe({
+            //       next: (res) => {
+            //         let result = res.data;
+            //         if (result) {
+            //           this.capacity = this.capacity - result.length;
+            //         }
+            //       },
+            //       complete: (() => {})
+            //     })
+            //   })
+            // })
             
           })
       })
