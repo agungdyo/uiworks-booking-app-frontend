@@ -47,7 +47,7 @@ export class RegistrationPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+    this.onLoad();
   }
 
   onLoad(){
