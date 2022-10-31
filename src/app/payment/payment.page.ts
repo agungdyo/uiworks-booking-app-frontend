@@ -22,8 +22,8 @@ export class PaymentPage implements OnInit {
 
   onLoad(){
     this.registrationService.getReservation({
-      startDate: this.start_date,
-      endDate: this.end_date,
+      startDate: this.start_date.toLocaleString('en-CA').slice(0,10),
+      endDate: this.end_date.toLocaleString('en-CA').slice(0,10),
       paid: true
     },'').subscribe({
       next: (res) => {
