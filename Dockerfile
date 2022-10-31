@@ -4,7 +4,7 @@ COPY package* ./
 RUN npm install -g ionic
 RUN npm install
 COPY . .
-RUN cp ./src/environments/environment.prod.ts ./src/environment/environment.ts
+RUN cp /app/src/environments/environment.prod.ts /app/src/environments/environment.ts
 RUN npm run build
 
 FROM nginx:alpine
