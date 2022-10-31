@@ -12,8 +12,8 @@ export class SetupPagePage implements OnInit {
   public multiple: boolean = false;
 
   public payload = {
-    schedule_id: '',
-    date: '',
+    id: undefined,
+    date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
     start_date: '',
     end_date: '',
     capacity: 0,
@@ -35,7 +35,7 @@ export class SetupPagePage implements OnInit {
 
   onCreateSchedule(){
     if (this.multiple === false) {
-      if (this.payload.schedule_id) {
+      if (this.payload.id) {
         this.onUpdateSchedule()
       } else {
         this.registrationService.createSchedule(this.payload, '').subscribe({
@@ -44,8 +44,8 @@ export class SetupPagePage implements OnInit {
           },
           complete: (() => {
             this.payload = {
-              schedule_id: '',
-              date: '',
+              id: undefined,
+              date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
               start_date: '',
               end_date: '',
               capacity: 0,
@@ -64,8 +64,8 @@ export class SetupPagePage implements OnInit {
         },
         complete: (() => {
           this.payload = {
-            schedule_id: '',
-            date: '',
+            id: undefined,
+            date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
             start_date: '',
             end_date: '',
             capacity: 0,
@@ -88,7 +88,7 @@ export class SetupPagePage implements OnInit {
         next: (res) => {
           let result = res.data[0];
           if (result) {
-            this.payload.schedule_id = result.id;
+            this.payload.id = result.id;
             this.payload.capacity = result.capacity;
             this.payload.trainer_fee = result.trainer_fee;
           }
@@ -100,7 +100,7 @@ export class SetupPagePage implements OnInit {
   onUpdateSchedule(){
     if (this.multiple === false){
       let schedule = {
-        id: this.payload.schedule_id,
+        id: this.payload.id,
         date: this.payload.date,
         date_string: new Date(this.payload.date).toLocaleString('en-CA').slice(0,10),
         capacity: this.payload.capacity,
@@ -109,7 +109,7 @@ export class SetupPagePage implements OnInit {
         updated_at: new Date(Date.now()),
         updated_by: 'admin',
       }
-      this.registrationService.updateSchedule(this.payload.schedule_id, schedule, '').subscribe({
+      this.registrationService.updateSchedule(this.payload.id, schedule, '').subscribe({
         next: (res) => {
           console.log(res.data)
         }
