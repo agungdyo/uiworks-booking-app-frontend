@@ -1,6 +1,7 @@
 FROM node:14 AS builder
 WORKDIR /app
 COPY package* ./
+COPY /src/environments/environment.prod.ts ./src/environment/environment.ts
 RUN npm install -g ionic
 RUN npm install
 COPY . .
