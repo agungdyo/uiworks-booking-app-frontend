@@ -47,11 +47,10 @@ export class RegistrationPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    
   }
 
-  onSelectDate(payload: any){
-    this.capacity = 0;
-    this.registration.date_string = payload.detail.value.toLocaleString('en-CA').slice(0,10);
+  onLoad(){
     this.registrationService.getSchedule({
       date_string: this.registration.date_string
     },'').subscribe({
@@ -91,6 +90,12 @@ export class RegistrationPage implements OnInit {
         
       })
     })
+  }
+
+  onSelectDate(payload: any){
+    this.capacity = 0;
+    this.registration.date_string = payload.detail.value.toLocaleString('en-CA').slice(0,10);
+    this.onLoad();
   }
 
   onEnterEmail(){
