@@ -58,7 +58,6 @@ export class CartPage implements OnInit {
   onCreateInvoice(){
     this.majaService.createInvoice(this.invoice_data, this.token).subscribe({
       next: (res) => {
-        console.log(res)
         this.invoice_result = res.data;
         if (this.invoice_result) {
           this.registration.invoice_id = this.invoice_result.transactionId;

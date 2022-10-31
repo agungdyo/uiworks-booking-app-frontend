@@ -17,18 +17,18 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.registrationService.getReservation({
-      date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
-      status: true,
-    },'').subscribe({
-      next: (res) => {
-        this.registration_list = res.data
-      }
-    })
+    // this.registrationService.getReservation({
+    //   date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+    //   status: true,
+    // },'').subscribe({
+    //   next: (res) => {
+    //     this.registration_list = res.data
+    //   }
+    // })
+    this.onLoad();
   }
 
-  onSelectDate(payload: any){
-    this.selected_date = payload.detail.value
+  onLoad() {
     this.registrationService.getReservation({
       date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
       status: true,
@@ -80,6 +80,11 @@ export class HomePage implements OnInit {
     })
     
     })
+  }
+
+  onSelectDate(payload: any){
+    this.selected_date = payload.detail.value
+    this.onLoad();
   }
 
 }
