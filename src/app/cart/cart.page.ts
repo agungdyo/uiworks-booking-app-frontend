@@ -60,7 +60,7 @@ export class CartPage implements OnInit {
       next: (res) => {
         this.invoice_result = res.data;
         if (this.invoice_result) {
-          this.registration.invoice_id = this.invoice_result.transactionId;
+          this.registration.invoice_number = this.invoice_result.number;
           this.registration.status = false;
           this.registration.date = new Date(this.registration.date_string);
           sessionStorage.setItem('invoice_result', JSON.stringify(this.invoice_result));

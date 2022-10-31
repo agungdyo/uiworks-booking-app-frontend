@@ -80,6 +80,15 @@ export class SetupPagePage implements OnInit {
   }
 
   onSelectDate(){
+    this.payload = {
+      id: undefined,
+      date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
+      start_date: '',
+      end_date: '',
+      capacity: 0,
+      trainer_fee: 0,
+      updated_by: 'admin'
+    };
     if (this.multiple === false){
       let date_string = new Date(this.payload.date).toLocaleString('en-CA').slice(0,10);
       this.registrationService.getSchedule({
