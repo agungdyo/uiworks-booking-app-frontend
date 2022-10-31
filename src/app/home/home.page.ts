@@ -18,7 +18,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.registrationService.getReservation({
-      date_string: this.selected_date.toLocaleString('en-CA').slice(0,10)
+      date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+      status: true,
     },'').subscribe({
       next: (res) => {
         this.registration_list = res.data
@@ -29,7 +30,8 @@ export class HomePage implements OnInit {
   onSelectDate(payload: any){
     this.selected_date = payload.detail.value
     this.registrationService.getReservation({
-      date_string: this.selected_date.toLocaleString('en-CA').slice(0,10)
+      date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+      status: true,
     },'').subscribe({
       next: (res) => {
         this.registration_list = res.data
@@ -48,7 +50,8 @@ export class HomePage implements OnInit {
           },
           complete: (() => {
             this.registrationService.getReservation({
-              date_string: this.selected_date.toLocaleString('en-CA').slice(0,10)
+              date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+              status: true
             },'').subscribe({
               next: (res) => {
                 let result = res.data;
