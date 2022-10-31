@@ -11,11 +11,13 @@ export class RegistrationPage implements OnInit {
 
   public registration = {
     schedule_id: undefined,
+    date: '',
     date_string: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
     name: '',
     email: '',
     phone: '',
     pelatih: false,
+    invoice_number: '',
     registration_fee: 0,
     admin_fee: 3500,
     trainer_fee: 0,
@@ -65,7 +67,8 @@ export class RegistrationPage implements OnInit {
       },
       complete: (() => {
         this.registrationService.getReservation({
-          date_string: this.registration.date_string
+          date_string: this.registration.date_string,
+          status: true
         },'').subscribe({
           next: (res) => {
             let result = res.data;
@@ -200,13 +203,15 @@ export class RegistrationPage implements OnInit {
   onClear() {
     this.registration = {
       schedule_id: undefined,
+      date: '',
       date_string: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
       name: '',
       email: '',
       phone: '',
       pelatih: false,
+      invoice_number: '',
       registration_fee: 0,
-      admin_fee: 0,
+      admin_fee: 3500,
       trainer_fee: 0,
       total_fee: 0,
     }

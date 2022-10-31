@@ -24,22 +24,6 @@ export class CartPage implements OnInit {
 
   ngOnInit() {
     this.registration = JSON.parse(sessionStorage.getItem('registration'))
-    // if (!this.registration){
-    //   this.registration = {
-    //     schedule_id: '',
-    //     date_string: '',
-    //     name: '',
-    //     email: '',
-    //     phone: '',
-    //     pelatih: false,
-    //     invoice_id: '',
-    //     registration_fee: 0,
-    //     admin_fee: 0,
-    //     trainer_fee: 0,
-    //     total_fee: 0,
-    //     status: false
-    //   };
-    // }
     this.invoice_data = JSON.parse(sessionStorage.getItem('invoice'))
   }
 
@@ -87,7 +71,7 @@ export class CartPage implements OnInit {
       email: '',
       phone: '',
       pelatih: false,
-      invoice_id: '',
+      invoice_number: '',
       registration_fee: 0,
       admin_fee: 0,
       trainer_fee: 0,
