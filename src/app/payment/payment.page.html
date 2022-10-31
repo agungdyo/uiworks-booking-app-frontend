@@ -1,9 +1,48 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>payment</ion-title>
+    <ion-title>Payments</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-text style="width: 150px;">
+        Pilih Tanggal
+      </ion-text>
+      <ion-datetime-button datetime="datestart"></ion-datetime-button>
+      <ion-text> - </ion-text>
+      <ion-datetime-button datetime="dateend"></ion-datetime-button>
+    </ion-item>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datestart" presentation="date" [preferWheel]="true" [(ngModel)]="start_date"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="dateend" presentation="date" [preferWheel]="true" [(ngModel)]="end_date"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </ion-list>
+
+  <ion-list>
+    <ion-grid>
+      <ion-row>
+        <ion-col>No.</ion-col>
+        <ion-col>Nama</ion-col>
+        <ion-col>Jumlah Dibayarkan</ion-col>
+        <ion-col>Menggunakan Pelatih</ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngFor="let x of payments; let i = index">
+      <ion-row>
+        <ion-col>{{ i + 1 }}</ion-col>
+        <ion-col>{{ x.name }}</ion-col>
+        <ion-col>{{ x.paid_amount | currency:'Rp':'symbol' }}</ion-col>
+        <ion-col>{{ x.pelatih ? "Ya" : "Tidak" }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
 
 </ion-content>

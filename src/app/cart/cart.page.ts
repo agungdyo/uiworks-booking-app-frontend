@@ -63,6 +63,7 @@ export class CartPage implements OnInit {
         if (this.invoice_result) {
           this.registration.invoice_id = this.invoice_result.transactionId;
           this.registration.status = false;
+          this.registration.date = new Date(this.registration.date_string);
           sessionStorage.setItem('invoice_result', JSON.stringify(this.invoice_result));
           this.registrationService.createReservation(this.registration, '').subscribe({
             complete: (() => {
