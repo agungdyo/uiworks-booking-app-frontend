@@ -11,7 +11,7 @@ export class RegistrationPage implements OnInit {
 
   public registration = {
     schedule_id: undefined,
-    date_string: '',
+    date_string: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
     name: '',
     email: '',
     phone: '',
@@ -51,7 +51,7 @@ export class RegistrationPage implements OnInit {
 
   onSelectDate(payload: any){
     this.capacity = 0;
-    this.registration.date_string = payload.detail.value.toLocaleString('en-CA').slice(0,10)
+    this.registration.date_string = payload.detail.value.toLocaleString('en-CA').slice(0,10);
     this.registrationService.getSchedule({
       date_string: this.registration.date_string
     },'').subscribe({
@@ -194,7 +194,7 @@ export class RegistrationPage implements OnInit {
   onClear() {
     this.registration = {
       schedule_id: undefined,
-      date_string: '',
+      date_string: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
       name: '',
       email: '',
       phone: '',
