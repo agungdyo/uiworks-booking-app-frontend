@@ -8,8 +8,8 @@ import { RegistrationService } from '../services/registration.service';
 })
 export class PaymentPage implements OnInit {
 
-  public start_date: string = new Date(Date.now()).toLocaleString('en-CA').slice(0,10),;
-  public end_date: string = new Date(Date.now()).toLocaleString('en-CA').slice(0,10),;
+  public start_date: string = new Date(Date.now()).toLocaleString('en-CA').slice(0,10);
+  public end_date: string = new Date(Date.now()).toLocaleString('en-CA').slice(0,10);
   public payments: any[] = [];
 
   constructor(
@@ -24,7 +24,7 @@ export class PaymentPage implements OnInit {
     this.registrationService.getReservation({
       startDate: new Date(this.start_date).toLocaleString('en-CA').slice(0,10),
       endDate: new Date(this.end_date).toLocaleString('en-CA').slice(0,10),
-      paid: true
+      status: true
     },'').subscribe({
       next: (res) => {
         this.payments = res.data

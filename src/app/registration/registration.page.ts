@@ -52,7 +52,8 @@ export class RegistrationPage implements OnInit {
 
   onLoad(){
     this.registrationService.getSchedule({
-      date_string: this.registration.date_string
+      date_string: this.registration.date_string,
+      status: true
     },'').subscribe({
       next: (res) => {
         let result = res.data[0];
