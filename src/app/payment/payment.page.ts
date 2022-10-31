@@ -8,8 +8,8 @@ import { RegistrationService } from '../services/registration.service';
 })
 export class PaymentPage implements OnInit {
 
-  public start_date: Date = new Date(Date.now());
-  public end_date: Date = new Date(Date.now());
+  public start_date: string = new Date(Date.now()).toLocaleString('en-CA').slice(0,10),;
+  public end_date: string = new Date(Date.now()).toLocaleString('en-CA').slice(0,10),;
   public payments: any[] = [];
 
   constructor(
