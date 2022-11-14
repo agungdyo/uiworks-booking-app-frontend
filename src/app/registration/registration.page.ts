@@ -38,8 +38,8 @@ export class RegistrationPage implements OnInit {
     attributes: []
   }
 
-  private trainer_fee = 0;
-  private admin_fee = 3500;
+  private trainer_fee: number = 0;
+  private admin_fee: number = 3500;
 
   public capacity: number = 0;
 
@@ -113,11 +113,11 @@ export class RegistrationPage implements OnInit {
   onSelectInstructor(e: any){
     if (e.detail.checked) {
       this.registration.trainer_fee = this.trainer_fee;
-      this.registration.total_fee = this.registration.registration_fee + this.trainer_fee;
+      this.registration.total_fee = Number(this.registration.total_fee) + Number(this.trainer_fee);
     }
     if (!e.detail.checked) {
       this.registration.trainer_fee = 0;
-      this.registration.total_fee = this.registration.total_fee - this.trainer_fee;
+      this.registration.total_fee = Number(this.registration.total_fee) - Number(this.trainer_fee);
     }
   }
 
