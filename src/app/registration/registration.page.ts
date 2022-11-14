@@ -34,7 +34,7 @@ export class RegistrationPage implements OnInit {
     activeDate: '',
     date: '',
     items: [],
-    payMethod: '',
+    paymentMethod: '',
     attributes: []
   }
 
@@ -154,7 +154,7 @@ export class RegistrationPage implements OnInit {
               "amount": this.admin_fee
             },
           ],
-          payMethod: '',
+          paymentMethod: '',
           attributes: []
         }
       } else {
@@ -181,7 +181,7 @@ export class RegistrationPage implements OnInit {
               "amount": this.admin_fee
             },
           ],
-          payMethod: '',
+          paymentMethod: '',
           attributes: []
         }
       }

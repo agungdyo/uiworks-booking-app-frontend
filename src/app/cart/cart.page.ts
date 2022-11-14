@@ -28,7 +28,7 @@ export class CartPage implements OnInit {
   }
 
   onGetToken(){
-    this.invoice_data.payMethod = this.payment_method;
+    this.invoice_data.paymentMethod = this.payment_method;
     this.majaService.getToken().subscribe({
       next: (res)=> {
         this.token = res.access_token;
