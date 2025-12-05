@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class AdminPage implements OnInit {
 
   public appPages = [
-    { title: 'Home', url: '/admin/home', icon: 'calendar' },
+    // { title: 'Home', url: '/admin/home', icon: 'calendar' },
     { title: 'Registration', url: '/admin/registration', icon: 'document-text' },
-    { title: 'Cart', url: '/admin/cart', icon: 'cart' },
-    { title: 'Pembayaran', url: '/admin/payment', icon: 'cash' },
-    { title: 'Settings', url: '/admin/settings', icon: 'settings' },
+    // { title: 'Cart', url: '/admin/cart', icon: 'cart' },
+    // { title: 'Pembayaran', url: '/admin/payment', icon: 'cash' },
+    { title: 'Settings', url: '/admin/settings',  icon: 'settings' },
   ];
 
   constructor() { }
