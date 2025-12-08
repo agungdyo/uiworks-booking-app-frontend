@@ -39,16 +39,16 @@
       <ion-input [(ngModel)]="registration.phone"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label>Menggunakan Pelatih</ion-label>
       <ion-toggle slot="end" [(ngModel)]="registration.pelatih" (ionChange)="onSelectInstructor($event)" ></ion-toggle>
-    </ion-item>
+    </ion-item> -->
 
     <ion-item>
-      <ion-label position="floating">Biaya Pendaftaran</ion-label>
+      <ion-label position="floating">Biaya Pemesanan</ion-label>
       <ion-input min="100000" required="true" [(ngModel)]="registration.registration_fee" type="number" (ionChange)="onSelectRegistrationFee()"></ion-input>
-      <ion-note slot="helper">Please input amount at least Rp 100.000,00</ion-note>
-      <ion-note slot="error">Input amount more than Rp 100.000,00</ion-note>
+      <ion-note slot="helper">Please choose amount before</ion-note>
+      <ion-note slot="error">Input amount more than Rp 10000</ion-note>
     </ion-item>
 
     <ion-item>

@@ -9,18 +9,26 @@ import { RegistrationService } from '../services/registration.service';
 })
 export class RegistrationPage implements OnInit {
 
+
+  public generateInvoiceNumber() {
+    const datePart = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    const randomPart = Math.floor(10000 + Math.random() * 90000); // 5 digit
+    return `${datePart}${randomPart}`;
+  }
+
   public registration = {
     schedule_id: undefined,
     date: '',
     date_string: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
-    name: '',
+    invoice_number: this.generateInvoiceNumber(),
+    invoice_date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
+    name:'',
     email: '',
     phone: '',
-    pelatih: false,
-    invoice_number: '',
+    // pelatih: false,
     registration_fee: 0,
     admin_fee: 3500,
-    trainer_fee: 0,
+    // trainer_fee: 0,
     total_fee: 0,
   }
 
@@ -29,7 +37,7 @@ export class RegistrationPage implements OnInit {
     email: '',
     phone: '',
     attribute1: '',
-    attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
+    // attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
     amount: 0,
     activeDate: '',
     date: '',
@@ -110,27 +118,60 @@ export class RegistrationPage implements OnInit {
     this.registration.total_fee = this.registration.registration_fee + this.registration.admin_fee;
   }
 
-  onSelectInstructor(e: any){
-    if (e.detail.checked) {
-      this.registration.trainer_fee = this.trainer_fee;
-      this.registration.total_fee = Number(this.registration.total_fee) + Number(this.trainer_fee);
-    }
-    if (!e.detail.checked) {
-      this.registration.trainer_fee = 0;
-      this.registration.total_fee = Number(this.registration.total_fee) - Number(this.trainer_fee);
-    }
-  }
+  // onSelectInstructor(e: any){
+  //   if (e.detail.checked) {
+  //     this.registration.trainer_fee = this.trainer_fee;
+  //     this.registration.total_fee = Number(this.registration.total_fee) + Number(this.trainer_fee);
+  //   }
+  //   if (!e.detail.checked) {
+  //     this.registration.trainer_fee = 0;
+  //     this.registration.total_fee = Number(this.registration.total_fee) - Number(this.trainer_fee);
+  //   }
+  // }
 
   onAddtoCart(){
     if (this.registration.registration_fee >= 10000) {
       this.registration.admin_fee = this.admin_fee;
-      if (this.registration.trainer_fee > 0) {
+      // if (this.registration.trainer_fee > 0) {
+        // this.invoice_data = {
+        //   name: this.registration.name,
+        //   email: this.registration.email,
+        //   phone: this.registration.phone,
+        //   attribute1: this.registration.date_string,
+        //   attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
+        //   amount: this.registration.total_fee,
+        //   activeDate: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
+        //   date: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
+        //   items: [
+        //     {
+        //       "description": 'Biaya Pendaftaran',
+        //       "unitPrice": this.registration.registration_fee,
+        //       "qty": 1,
+        //       "amount": this.registration.registration_fee
+        //     },
+        //     {
+        //       "description": 'Biaya Pelatih',
+        //       "unitPrice": this.registration.trainer_fee,
+        //       "qty": 1,
+        //       "amount": this.registration.trainer_fee
+        //     },
+        //     {
+        //       "description": 'Biaya Administrasi',
+        //       "unitPrice": this.admin_fee,
+        //       "qty": 1,
+        //       "amount": this.admin_fee
+        //     },
+        //   ],
+        //   paymentMethod: '',
+        //   attributes: []
+        // }
+      // } else {
         this.invoice_data = {
           name: this.registration.name,
           email: this.registration.email,
           phone: this.registration.phone,
           attribute1: this.registration.date_string,
-          attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
+          // attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
           amount: this.registration.total_fee,
           activeDate: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
           date: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
@@ -142,12 +183,6 @@ export class RegistrationPage implements OnInit {
               "amount": this.registration.registration_fee
             },
             {
-              "description": 'Biaya Pelatih',
-              "unitPrice": this.registration.trainer_fee,
-              "qty": 1,
-              "amount": this.registration.trainer_fee
-            },
-            {
               "description": 'Biaya Administrasi',
               "unitPrice": this.admin_fee,
               "qty": 1,
@@ -157,34 +192,7 @@ export class RegistrationPage implements OnInit {
           paymentMethod: '',
           attributes: []
         }
-      } else {
-        this.invoice_data = {
-          name: this.registration.name,
-          email: this.registration.email,
-          phone: this.registration.phone,
-          attribute1: this.registration.date_string,
-          attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
-          amount: this.registration.total_fee,
-          activeDate: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
-          date: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
-          items: [
-            {
-              "description": 'Biaya Pendaftaran',
-              "unitPrice": this.registration.registration_fee,
-              "qty": 1,
-              "amount": this.registration.registration_fee
-            },
-            {
-              "description": 'Biaya Administrasi',
-              "unitPrice": this.admin_fee,
-              "qty": 1,
-              "amount": this.admin_fee
-            },
-          ],
-          paymentMethod: '',
-          attributes: []
-        }
-      }
+      // }
       sessionStorage.setItem('invoice', JSON.stringify(this.invoice_data))
       sessionStorage.setItem('registration', JSON.stringify(this.registration))
       this.registrationService.createCart(this.registration, '').subscribe({
@@ -208,11 +216,12 @@ export class RegistrationPage implements OnInit {
       name: '',
       email: '',
       phone: '',
-      pelatih: false,
+      invoice_date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
+      // pelatih: false,
       invoice_number: '',
       registration_fee: 0,
       admin_fee: 3500,
-      trainer_fee: 0,
+      // trainer_fee: 0,
       total_fee: 0,
     }
   }

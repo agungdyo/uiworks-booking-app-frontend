@@ -17,7 +17,7 @@ export class SetupPagePage implements OnInit {
     start_date: '',
     end_date: '',
     capacity: 0,
-    trainer_fee: 0,
+    // trainer_fee: 0,
     updated_by: 'admin'
   }
 
@@ -49,7 +49,7 @@ export class SetupPagePage implements OnInit {
               start_date: '',
               end_date: '',
               capacity: 0,
-              trainer_fee: 0,
+              // trainer_fee: 0,
               updated_by: 'admin'
             };
             this.router.navigate(['/admin/home'])
@@ -69,7 +69,7 @@ export class SetupPagePage implements OnInit {
             start_date: '',
             end_date: '',
             capacity: 0,
-            trainer_fee: 0,
+            // trainer_fee: 0,
             updated_by: 'admin'
           };
           this.multiple = false;
@@ -86,7 +86,7 @@ export class SetupPagePage implements OnInit {
       start_date: '',
       end_date: '',
       capacity: 0,
-      trainer_fee: 0,
+      // trainer_fee: 0,
       updated_by: 'admin'
     };
     if (this.multiple === false){
@@ -99,7 +99,7 @@ export class SetupPagePage implements OnInit {
           if (result) {
             this.payload.id = result.id;
             this.payload.capacity = result.capacity;
-            this.payload.trainer_fee = result.trainer_fee;
+            // this.payload.trainer_fee = result.trainer_fee;
           }
         }
       })
@@ -113,7 +113,7 @@ export class SetupPagePage implements OnInit {
         date: this.payload.date,
         date_string: new Date(this.payload.date).toLocaleString('en-CA').slice(0,10),
         capacity: this.payload.capacity,
-        trainer_fee: this.payload.trainer_fee,
+        // trainer_fee: this.payload.trainer_fee,
         status: true,
         updated_at: new Date(Date.now()),
         updated_by: 'admin',
