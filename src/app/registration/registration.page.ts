@@ -56,6 +56,15 @@ export class RegistrationPage implements OnInit {
     private router: Router
   ) { }
 
+
+  feeOptions = [45000, 30000, 50000, 200000];
+
+  selectFee(fee: number) {
+    this.registration.registration_fee = fee;
+    this.onSelectRegistrationFee(); // biar tetap hitung total
+  }
+
+
   ngOnInit() {
     this.onLoad();
   }

@@ -44,17 +44,53 @@
       <ion-toggle slot="end" [(ngModel)]="registration.pelatih" (ionChange)="onSelectInstructor($event)" ></ion-toggle>
     </ion-item> -->
 
-    <ion-item>
+    <!-- <ion-item>
       <ion-label position="floating">Biaya Pemesanan</ion-label>
       <ion-input min="100000" required="true" [(ngModel)]="registration.registration_fee" type="number" (ionChange)="onSelectRegistrationFee()"></ion-input>
       <ion-note slot="helper">Please choose amount before</ion-note>
       <ion-note slot="error">Input amount more than Rp 10000</ion-note>
+    </ion-item> -->
+
+    <ion-item lines="none">
+      <ion-label>Biaya Pemesanan</ion-label>
+    </ion-item>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let fee of feeOptions">
+          <ion-card 
+            button="true"
+            (click)="selectFee(fee)"
+            [class.selected]="registration.registration_fee === fee">
+
+            <ion-card-content class="fee-card">
+              Rp {{ fee | number:'1.0-0' }}
+            </ion-card-content>
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- <ion-note *ngIf="!registration.registration_fee" color="medium">
+      Silakan pilih nominal biaya
+    </ion-note> -->
+
+
+    <ion-item>
+      <ion-label class="ion-margin-top" position="stacked">Biaya Pemesanan</ion-label>
+      <ion-text>{{ registration.registration_fee | currency:'Rp':'symbol' }}</ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-label class="ion-margin-top" position="stacked">Biaya Admin VA</ion-label>
+      <ion-text>{{ registration.admin_fee | currency:'Rp':'symbol' }}</ion-text>
     </ion-item>
 
     <ion-item>
       <ion-label class="ion-margin-top" position="stacked">Total Mesti Dibayarkan</ion-label>
       <ion-text>{{ registration.total_fee | currency:'Rp':'symbol' }}</ion-text>
     </ion-item>
+  
 
     <ion-grid *ngIf="capacity > 0" style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
       <ion-row>
