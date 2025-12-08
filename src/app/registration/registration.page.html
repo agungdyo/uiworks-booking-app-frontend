@@ -39,11 +39,13 @@
       <ion-input [(ngModel)]="registration.phone"></ion-input>
     </ion-item>
 
+    <!-- menggunakan pelatih -->
     <!-- <ion-item>
       <ion-label>Menggunakan Pelatih</ion-label>
       <ion-toggle slot="end" [(ngModel)]="registration.pelatih" (ionChange)="onSelectInstructor($event)" ></ion-toggle>
     </ion-item> -->
 
+    <!-- input manual bebas -->
     <!-- <ion-item>
       <ion-label position="floating">Biaya Pemesanan</ion-label>
       <ion-input min="100000" required="true" [(ngModel)]="registration.registration_fee" type="number" (ionChange)="onSelectRegistrationFee()"></ion-input>
@@ -55,6 +57,7 @@
       <ion-label>Biaya Pemesanan</ion-label>
     </ion-item>
 
+    <!-- select card option biaya va  -->
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let fee of feeOptions">
@@ -72,9 +75,31 @@
       </ion-row>
     </ion-grid>
 
-    <!-- <ion-note *ngIf="!registration.registration_fee" color="medium">
-      Silakan pilih nominal biaya
-    </ion-note> -->
+    <ion-item lines="none">
+      <ion-label>Metode Pembayaran</ion-label>
+    </ion-item>
+
+    <ion-list>
+      <ion-radio-group [(ngModel)]="registration.payment_method" (ionChange)="onSelectPaymentMethod()">
+        
+        <ion-item *ngFor="let method of paymentMethods">
+          <ion-label>
+            <h2>{{ method.label }}</h2>
+
+            <p *ngIf="method.admin_fee > 0">
+              Admin Fee: Rp {{ method.admin_fee | number }}
+            </p>
+
+            <p *ngIf="method.percent_fee > 0">
+              Admin Fee: {{ method.percent_fee }}%
+            </p>
+          </ion-label>
+
+          <ion-radio slot="start" [value]="method.id"></ion-radio>
+        </ion-item>
+
+      </ion-radio-group>
+    </ion-list>
 
 
     <ion-item>

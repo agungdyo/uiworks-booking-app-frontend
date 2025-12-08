@@ -16,6 +16,21 @@ export class RegistrationPage implements OnInit {
     return `${datePart}${randomPart}`;
   }
 
+  paymentMethods = [
+  {
+    id: 'va',
+    label: 'Virtual Account',
+    type: 'fixed',
+    adminFee: 3500
+  },
+  {
+    id: 'qris',
+    label: 'QRIS',
+    type: 'percentage',
+    percent: 0.7 // 0.7%
+  }
+];
+
   public registration = {
     schedule_id: undefined,
     date: '',
@@ -27,10 +42,16 @@ export class RegistrationPage implements OnInit {
     phone: '',
     // pelatih: false,
     registration_fee: 0,
-    admin_fee: 3500,
+    admin_fee: 0,
     // trainer_fee: 0,
     total_fee: 0,
   }
+
+  calculateTotal() {
+  this.registration.total_fee =
+    (this.registration.registration_fee || 0) +
+    (this.registration.admin_fee || 0);
+}
 
   public invoice_data = {
     name: '',
@@ -63,6 +84,9 @@ export class RegistrationPage implements OnInit {
     this.registration.registration_fee = fee;
     this.onSelectRegistrationFee(); // biar tetap hitung total
   }
+
+
+
 
 
   ngOnInit() {
