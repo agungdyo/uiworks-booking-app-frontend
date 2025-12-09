@@ -78,7 +78,7 @@ export class CartPage implements OnInit {
       total_fee: 0,
       status: false
     };
-    this.router.navigate(['/user/home'])
+    this.router.navigate(['/user/registration'])
   }
 
 }

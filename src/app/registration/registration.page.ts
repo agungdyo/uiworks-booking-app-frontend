@@ -27,23 +27,23 @@ export class RegistrationPage implements OnInit {
     id: 'qris',
     label: 'QRIS',
     type: 'percentage',
-    percent: 0.7 // 0.7%
+    percent: 1 // 0.7%
   }
 ];
-
+  //parameter registration di booking app
   public registration = {
     schedule_id: undefined,
     date: '',
     date_string: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
     invoice_number: this.generateInvoiceNumber(),
     invoice_date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
+    expire_date: new Date(Date.now() + 24 * 60 * 60 * 1000),
     name:'',
     email: '',
     phone: '',
-    // pelatih: false,
+    payment_method: '',
     registration_fee: 0,
     admin_fee: 0,
-    // trainer_fee: 0,
     total_fee: 0,
   }
 
@@ -52,15 +52,15 @@ export class RegistrationPage implements OnInit {
     (this.registration.registration_fee || 0) +
     (this.registration.admin_fee || 0);
 }
-
+  //parameter invoice di maja
   public invoice_data = {
     name: '',
     email: '',
     phone: '',
     attribute1: '',
-    // attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
     amount: 0,
     activeDate: '',
+    inactiveDate:'',
     date: '',
     items: [],
     paymentMethod: '',
@@ -68,7 +68,7 @@ export class RegistrationPage implements OnInit {
   }
 
   private trainer_fee: number = 0;
-  private admin_fee: number = 3500;
+  private admin_fee: number = 0;
 
   public capacity: number = 0;
 
@@ -84,10 +84,6 @@ export class RegistrationPage implements OnInit {
     this.registration.registration_fee = fee;
     this.onSelectRegistrationFee(); // biar tetap hitung total
   }
-
-
-
-
 
   ngOnInit() {
     this.onLoad();
@@ -147,67 +143,55 @@ export class RegistrationPage implements OnInit {
     sessionStorage.setItem('email', this.registration.email)
   }
 
-  onSelectRegistrationFee(){
-    this.registration.total_fee = this.registration.registration_fee + this.registration.admin_fee;
+  onChangePaymentMethod() {
+    this.onSelectRegistrationFee();
   }
 
-  // onSelectInstructor(e: any){
-  //   if (e.detail.checked) {
-  //     this.registration.trainer_fee = this.trainer_fee;
-  //     this.registration.total_fee = Number(this.registration.total_fee) + Number(this.trainer_fee);
-  //   }
-  //   if (!e.detail.checked) {
-  //     this.registration.trainer_fee = 0;
-  //     this.registration.total_fee = Number(this.registration.total_fee) - Number(this.trainer_fee);
-  //   }
-  // }
+  onChangeRegistrationFee() {
+    this.onSelectRegistrationFee();
+  }
+
+  onSelectRegistrationFee() {
+    const selectedMethod = this.paymentMethods.find(
+      (m) => m.id === this.registration.payment_method
+    );
+
+    if (!selectedMethod) {
+      this.registration.admin_fee = 0;
+      this.registration.total_fee = this.registration.registration_fee;
+      return;
+    }
+
+    // === FIXED FEE ===
+    if (selectedMethod.type === 'fixed') {
+      this.registration.admin_fee = selectedMethod.adminFee;
+    }
+
+    // === PERCENTAGE FEE (contoh: 0.7% dari registration_fee) ===
+    if (selectedMethod.type === 'percentage') {
+      const percentValue = selectedMethod.percent / 100; // ubah 0.7 menjadi 0.007
+      this.registration.admin_fee =
+        this.registration.registration_fee * percentValue;
+    }
+
+    // hitung total
+    this.registration.total_fee =
+      this.registration.registration_fee + this.registration.admin_fee;
+  }
 
   onAddtoCart(){
     if (this.registration.registration_fee >= 10000) {
-      this.registration.admin_fee = this.admin_fee;
-      // if (this.registration.trainer_fee > 0) {
-        // this.invoice_data = {
-        //   name: this.registration.name,
-        //   email: this.registration.email,
-        //   phone: this.registration.phone,
-        //   attribute1: this.registration.date_string,
-        //   attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
-        //   amount: this.registration.total_fee,
-        //   activeDate: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
-        //   date: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
-        //   items: [
-        //     {
-        //       "description": 'Biaya Pendaftaran',
-        //       "unitPrice": this.registration.registration_fee,
-        //       "qty": 1,
-        //       "amount": this.registration.registration_fee
-        //     },
-        //     {
-        //       "description": 'Biaya Pelatih',
-        //       "unitPrice": this.registration.trainer_fee,
-        //       "qty": 1,
-        //       "amount": this.registration.trainer_fee
-        //     },
-        //     {
-        //       "description": 'Biaya Administrasi',
-        //       "unitPrice": this.admin_fee,
-        //       "qty": 1,
-        //       "amount": this.admin_fee
-        //     },
-        //   ],
-        //   paymentMethod: '',
-        //   attributes: []
-        // }
-      // } else {
+      this.onSelectRegistrationFee();
+
         this.invoice_data = {
           name: this.registration.name,
           email: this.registration.email,
           phone: this.registration.phone,
           attribute1: this.registration.date_string,
-          // attribute2: this.registration.pelatih ? "Dengan pelatih" : "",
           amount: this.registration.total_fee,
           activeDate: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
           date: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
+          inactiveDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
           items: [
             {
               "description": 'Biaya Pendaftaran',
@@ -217,15 +201,14 @@ export class RegistrationPage implements OnInit {
             },
             {
               "description": 'Biaya Administrasi',
-              "unitPrice": this.admin_fee,
+              "unitPrice": this.registration.admin_fee,
               "qty": 1,
-              "amount": this.admin_fee
+              "amount": this.registration.admin_fee
             },
           ],
           paymentMethod: '',
           attributes: []
         }
-      // }
       sessionStorage.setItem('invoice', JSON.stringify(this.invoice_data))
       sessionStorage.setItem('registration', JSON.stringify(this.registration))
       this.registrationService.createCart(this.registration, '').subscribe({
@@ -233,12 +216,10 @@ export class RegistrationPage implements OnInit {
           this.onClear();
           this.router.navigate(['/user/cart']);
         }
-      })
-      
+      })      
     } else {
       alert('Harap masukkan nilai pendaftaran paling rendah Rp10.000,00')
-    }
-    
+    }  
   }
 
   onClear() {
@@ -250,11 +231,11 @@ export class RegistrationPage implements OnInit {
       email: '',
       phone: '',
       invoice_date: new Date(Date.now()).toLocaleString('en-CA').slice(0,10),
-      // pelatih: false,
+      expire_date: new Date(Date.now() + 24 * 60 * 60 * 1000),
+      payment_method: '',
       invoice_number: '',
       registration_fee: 0,
       admin_fee: 3500,
-      // trainer_fee: 0,
       total_fee: 0,
     }
   }
