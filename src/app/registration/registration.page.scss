@@ -1,0 +1,118 @@
+/* ============================
+   COLOR PALETTE (Green/Yellow)
+============================ */
+$bg-dark: #0f1a0f;
+$bg-sidebar: #142414;
+$bg-hover: #1d331d;
+$accent-green: #41c94b;
+$accent-yellow: #ffd83b;
+$text-light: #f6f6f6;
+$text-muted: #b6c4b6;
+
+/* ============================
+   GLOBAL
+============================ */
+ion-content, ion-menu, ion-app {
+  --background: #0f1a0f;
+  color: $text-light;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================
+   SIDEBAR MENU
+============================ */
+ion-menu {
+  --width: 260px;
+  --min-width: 260px;
+  border-right: 1px solid #1a2c1a;
+
+  ion-content {
+    --background: $bg-sidebar;
+  }
+
+  ion-list-header {
+    color: $accent-yellow;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  ion-note {
+    color: $text-muted;
+    font-size: 14px;
+    padding-left: 16px;
+    margin-bottom: 20px;
+    display: block;
+  }
+}
+
+/* ============================
+   MENU ITEMS
+============================ */
+ion-menu-toggle ion-item {
+  --background: transparent;
+  --color: $text-light;
+  border-radius: 8px;
+  margin: 4px 8px;
+  padding: 4px 10px;
+  transition: 0.15s ease;
+}
+
+ion-menu-toggle ion-item ion-icon {
+  color: $accent-yellow;
+  font-size: 20px;
+}
+
+ion-menu-toggle ion-item:hover {
+  --background: $bg-hover;
+}
+
+ion-menu-toggle ion-item.selected {
+  --background: rgba($accent-green, 0.15);
+  border-left: 4px solid $accent-green;
+  --color: #ffffff;
+}
+
+ion-menu-toggle ion-item.selected ion-icon {
+  color: $accent-green;
+}
+
+/* ============================
+   MAIN CONTENT AREA
+============================ */
+ion-router-outlet#main-content {
+  --background: $bg-dark;
+  padding: 20px;
+}
+
+/* Optional page wrapper */
+.main-wrapper {
+  padding: 20px 30px;
+}
+
+/* ============================
+   TYPOGRAPHY
+============================ */
+h1, h2, h3 {
+  color: $accent-yellow;
+}
+
+p, ion-label {
+  color: $text-muted;
+}
+
+/* ============================
+   DARK CARD (Matching Theme)
+============================ */
+.card-dark {
+  background: #1c2e1c;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #274027;
+}
+
+// Selected state styling
+ion-card.selected {
+    border: 2px solid var(--ion-color-primary);
+    background: rgba(var(--ion-color-primary-rgb), 0.05);
+}
+
