@@ -78,7 +78,12 @@ export class RegistrationPage implements OnInit {
   ) { }
 
 
-  feeOptions = [45000, 30000, 50000, 200000];
+  feeOptions = [
+      { amount: 45000, label: 'Basic', description: 'Standard package' },
+      { amount: 30000, label: 'Premium', description: 'Includes extras' },
+      { amount: 50000, label: 'VIP', description: 'Full benefits' },
+      { amount: 200000, label: 'VVIP', description: 'All inclusive' }
+    ];
 
   selectFee(fee: number) {
     this.registration.registration_fee = fee;

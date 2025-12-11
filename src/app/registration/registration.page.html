@@ -46,14 +46,24 @@
     <!-- select card option biaya va  -->
     <ion-grid>
       <ion-row>
-        <ion-col size="6" *ngFor="let fee of feeOptions">
+        <!-- <ion-col size="6" *ngFor="let fee of feeOptions"> -->
+             <ion-col size="6" *ngFor="let fee of feeOptions; let i = index">
           <ion-card 
             button="true"
-            (click)="selectFee(fee)"
-            [class.selected]="registration.registration_fee === fee">
+            (click)="selectFee(fee.amount)"
+            [class.selected]="registration.registration_fee === fee.amount">
 
             <ion-card-content class="fee-card">
-              Rp {{ fee | number:'1.0-0' }}
+              Rp {{ fee.amount | number:'1.0-0' }}
+            </ion-card-content>
+
+            <!-- Optional: Add more details if you expand fee object later -->
+            <ion-card-content *ngIf="fee.label" class="fee-card">
+              {{ fee.label }}
+            </ion-card-content>
+            
+            <ion-card-content *ngIf="fee.description" class="fee-card">
+              {{ fee.description }}
             </ion-card-content>
 
           </ion-card>
