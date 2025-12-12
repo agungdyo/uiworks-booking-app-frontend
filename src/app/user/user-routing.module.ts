@@ -20,6 +20,11 @@ const routes: Routes = [
         path: 'cart',
         loadChildren: () => import('../cart/cart.module').then( m => m.CartPageModule)
       },
+      {
+        path: 'detail-invoice',
+        loadChildren: () => import('../detail-invoice/detail-invoice.module').then( m => m.DetailInvoicePageModule)
+      },
+
     ]
   },
   {

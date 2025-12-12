@@ -184,6 +184,49 @@ export class RegistrationPage implements OnInit {
       this.registration.registration_fee + this.registration.admin_fee;
   }
 
+  onAddtoDetailInvoice(){
+    if (this.registration.registration_fee >= 10000) {
+      this.onSelectRegistrationFee();
+
+        this.invoice_data = {
+          name: this.registration.name,
+          email: this.registration.email,
+          phone: this.registration.phone,
+          attribute1: this.registration.date_string,
+          amount: this.registration.total_fee,
+          activeDate: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
+          date: new Date(Date.now()).toLocaleString('en-CA').slice(0, 10),
+          inactiveDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
+          items: [
+            {
+              "description": 'Biaya Pendaftaran',
+              "unitPrice": this.registration.registration_fee,
+              "qty": 1,
+              "amount": this.registration.registration_fee
+            },
+            {
+              "description": 'Biaya Administrasi',
+              "unitPrice": this.registration.admin_fee,
+              "qty": 1,
+              "amount": this.registration.admin_fee
+            },
+          ],
+          paymentMethod: '',
+          attributes: []
+        }
+      sessionStorage.setItem('invoice', JSON.stringify(this.invoice_data))
+      sessionStorage.setItem('registration', JSON.stringify(this.registration))
+      this.registrationService.createCart(this.registration, '').subscribe({
+        next: (res) => {
+          this.onClear();
+          this.router.navigate(['/user/detailInvoice']);
+        }
+      })      
+    } else {
+      alert('Harap masukkan nilai pendaftaran paling rendah Rp10.000,00')
+    }  
+  }
+
   onAddtoCart(){
     if (this.registration.registration_fee >= 10000) {
       this.onSelectRegistrationFee();

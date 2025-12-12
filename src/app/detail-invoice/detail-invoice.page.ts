@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-user',
-  templateUrl: './user.page.html',
-  styleUrls: ['./user.page.scss'],
+  selector: 'app-detail-invoice',
+  templateUrl: './detail-invoice.page.html',
+  styleUrls: ['./detail-invoice.page.scss'],
 })
-export class UserPage implements OnInit {
+export class DetailInvoicePage implements OnInit {
 
   public appPages = [
     { title: 'Home', url: '/user/home', icon: 'calendar' },
     { title: 'Registration', url: '/user/registration', icon: 'document-text' },
-    { title: 'detail-invoice', url: '/user/detail-invoice', icon: 'detail-invoice' },
+    { title: 'Detail Invoice', url: '/user/detail-invoice', icon: 'calender' },
     { title: 'Cart', url: '/user/cart', icon: 'cart' },
+
   ];
 
   constructor() { }

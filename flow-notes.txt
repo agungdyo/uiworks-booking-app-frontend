@@ -1,0 +1,19 @@
+1.1 admin set slot pemesanan (pertanggal, perminggu, dst)
+2.1 admin set harga dan detail harga 
+3.1 pelanggan pilih tanggal
+4.1 pelanggan isi data
+5.1 pelanggan pilih harga pemesanan
+6.1 pelanggan pilih metode pembayaran
+7.1 pelanggan transaksi menggunakan qris /  va
+
+
+1.2 admin
+2.2 user
+
+
+1.3 home 
+2.3 schedule
+3.3 registration/reservation
+4.3 cart
+5.3 payment
+6.3 detail payment

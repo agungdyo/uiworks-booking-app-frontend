@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Cart</ion-title>
+    <ion-title>Detail Invoice</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -116,7 +116,7 @@
   <ion-grid style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
     <ion-row>
       <ion-col size="6">
-        <ion-button *ngIf="this.registration.email" expand="block" (click)="onInvoiceDetail()">Pay</ion-button>
+        <ion-button *ngIf="this.registration.email" expand="block" (click)="onGetToken()">Pay</ion-button>
       </ion-col>
       <ion-col size="6">
         <ion-button expand="block" color="danger" (click)="onClearCart()">Cancel</ion-button>

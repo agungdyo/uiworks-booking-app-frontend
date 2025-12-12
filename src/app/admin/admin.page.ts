@@ -11,7 +11,7 @@ export class AdminPage implements OnInit {
     // { title: 'Home', url: '/admin/home', icon: 'calendar' },
     { title: 'Registration', url: '/admin/registration', icon: 'document-text' },
     // { title: 'Cart', url: '/admin/cart', icon: 'cart' },
-    // { title: 'Pembayaran', url: '/admin/payment', icon: 'cash' },
+    { title: 'Pembayaran', url: '/admin/payment', icon: 'cash' },
     { title: 'Settings', url: '/admin/settings',  icon: 'settings' },
   ];
 

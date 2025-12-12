@@ -50,7 +50,7 @@ export class CartPage implements OnInit {
           sessionStorage.setItem('invoice_result', JSON.stringify(this.invoice_result));
           this.registrationService.createReservation(this.registration, '').subscribe({
             complete: (() => {
-              this.onClearCart()
+              this.onInvoiceDetail()
             })
           })
         }
@@ -60,6 +60,10 @@ export class CartPage implements OnInit {
       }),
       error: ((e) => console.log(e.error))
     })
+  }
+
+   onInvoiceDetail(){
+    this.router.navigate(['/user/detail-invoice'])
   }
 
   onClearCart(){
