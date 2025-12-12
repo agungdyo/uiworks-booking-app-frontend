@@ -1,0 +1,101 @@
+/* ============================
+   GLOBAL DARK THEME
+============================ */
+ion-content, ion-menu, ion-app {
+  --background: #121212;
+  color: #e5e5e5;
+  font-family: "Inter", sans-serif;
+}
+
+/* ============================
+   SIDEBAR MENU
+============================ */
+ion-menu {
+  --width: 260px;
+  --min-width: 260px;
+  border-right: 1px solid #1f1f1f;
+
+  ion-content {
+    --background: #1c1c1c;
+    padding-top: 10px;
+  }
+
+  ion-list-header {
+    color: #ffffff;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  ion-note {
+    color: #a8a8a8;
+    font-size: 14px;
+    padding-left: 16px;
+    margin-bottom: 20px;
+    display: block;
+  }
+}
+
+/* ============================
+   MENU ITEMS
+============================ */
+ion-menu-toggle ion-item {
+  --background: transparent;
+  --color: #ddd;
+  border-radius: 8px;
+  margin: 4px 8px;
+  padding: 4px 10px;
+  transition: 0.15s;
+}
+
+ion-menu-toggle ion-item ion-icon {
+  color: #cfcfcf;
+  font-size: 20px;
+}
+
+ion-menu-toggle ion-item:hover {
+  --background: #2a2a2a;
+}
+
+ion-menu-toggle ion-item.selected {
+  --background: #33384d;
+  --color: #ffffff;
+  border-left: 3px solid #4c6fff;
+}
+
+ion-menu-toggle ion-item.selected ion-icon {
+  color: #4c6fff;
+}
+
+/* ============================
+   MAIN CONTENT AREA
+============================ */
+ion-router-outlet#main-content {
+  --background: #121212;
+  padding: 20px;
+  display: block;
+  width: 100%;
+}
+
+/* Optional: Give inner pages spacing */
+.main-wrapper {
+  padding: 20px 30px;
+}
+
+/* ============================
+   TYPOGRAPHY
+============================ */
+h1, h2, h3, h4 {
+  color: #fff;
+}
+
+p, ion-label {
+  color: #ccc;
+}
+
+/* For tables or cards you add later */
+.card-dark {
+  background: #222;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #2d2d2d;
+}

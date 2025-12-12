@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RegistrationService } from '../services/registration.service';
 
 @Component({
@@ -13,18 +14,20 @@ export class HomePage implements OnInit {
   public capacity: number = 0;
 
   constructor(
-    private registrationService: RegistrationService
+    private registrationService: RegistrationService,
+    private router: Router
+
   ) { }
 
   ngOnInit() {
-    // this.registrationService.getReservation({
-    //   date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
-    //   status: true,
-    // },'').subscribe({
-    //   next: (res) => {
-    //     this.registration_list = res.data
-    //   }
-    // })
+    this.registrationService.getReservation({
+      date_string: this.selected_date.toLocaleString('en-CA').slice(0,10),
+      status: true,
+    },'').subscribe({
+      next: (res) => {
+        this.registration_list = res.data
+      }
+    })
     this.onLoad();
   }
 
@@ -85,6 +88,10 @@ export class HomePage implements OnInit {
   onSelectDate(payload: any){
     this.selected_date = payload.detail.value
     this.onLoad();
+  }
+
+  onRegistration(payload: any){
+    this.router.navigate(['/user/registration']);
   }
 
 }

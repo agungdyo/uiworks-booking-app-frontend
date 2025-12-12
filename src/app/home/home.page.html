@@ -28,16 +28,25 @@
         <ion-row>
           <ion-col>No.</ion-col>
           <ion-col>Nama</ion-col>
-          <ion-col>Menggunakan Pelatih</ion-col>
+          <!-- <ion-col>Menggunakan Pelatih</ion-col> -->
         </ion-row>
       </ion-grid>
       <ion-grid *ngFor="let x of registration_list; let i = index">
         <ion-row>
           <ion-col>{{ i + 1 }}</ion-col>
           <ion-col>{{ x.name }}</ion-col>
-          <ion-col>{{ x.pelatih ? "Ya" : "Tidak" }}</ion-col>
+          <!-- <ion-col>{{ x.pelatih ? "Ya" : "Tidak" }}</ion-col> -->
         </ion-row>
       </ion-grid>
+
+
+    <ion-grid style="justify-self: end; margin-top: 25px; margin-bottom: 50px">
+      <ion-row>
+        <ion-col size="12">
+          <ion-button expand="block" color="danger" (click)="onRegistration()">Book Now !</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
       
     </ion-item-group>
   </ion-list>

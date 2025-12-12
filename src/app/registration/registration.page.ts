@@ -245,4 +245,8 @@ export class RegistrationPage implements OnInit {
     }
   }
 
+  onRegistration(payload: any){
+    this.router.navigate(['/user/home']);
+  }
+
 }
